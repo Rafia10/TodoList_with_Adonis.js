@@ -1,0 +1,52 @@
+@layout('layouts/app')
+@section('content')
+<div class="columns">
+  <div class="column is-4 is-offset-4">
+    <div class="box">
+      <h2 class="title has-text-centered">Login</h2>
+      @if(flashMessages.has('notification'))
+      <div class="notification is-danger is-light">
+          {{flashMessages.get('notification')}}
+      </div>
+      @endif
+      <form action="/login" method="post">
+        {{ csrfField() }}
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input
+              type="text"
+              class="input {{ flashMessages.get('errors.email') ? 'is-danger' : '' }}"
+              name="email"
+              value="{{ flashMessages.get('email') || '' }}"
+            />
+          </div>
+          @if(flashMessages.has('errors.email'))
+          <p class="help is-danger">{{ flashMessages.get('errors.email') }}</p>
+          @endif
+        </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input
+              type="password"
+              class="input {{ flashMessages.get('errors.password') ? 'is-danger' : '' }}"
+              name="password"
+              value="{{ flashMessages.get('password') || '' }}"
+            />
+          </div>
+          @if(flashMessages.has('errors.password'))
+          <p class="help is-danger">{{ flashMessages.get('errors.password') }}</p>
+          @endif
+        </div>
+      
+       
+        <br />
+        <div class="control">
+          <button type="submit" class="button is-link is_fullwidth">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+@endsection
