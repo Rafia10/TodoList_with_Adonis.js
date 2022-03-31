@@ -1,15 +1,14 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class UsersSchema extends BaseSchema {
-  protected tableName = 'users'
+export default class Tasks extends BaseSchema {
+  protected tableName = 'tasks'
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary()
-      table.string('name').notNullable()
-      table.string('email', 255).notNullable()
-      table.string('password', 180).notNullable()
-      table.string('remember_me_token').nullable()
+      table.integer('user_id').unsigned().notNullable()
+      table.string('title').notNullable()
+      table.boolean('is_completed').defaultTo(0)
       table.timestamps(true)
     })
   }

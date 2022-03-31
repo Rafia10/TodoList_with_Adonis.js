@@ -50,8 +50,10 @@
                         <td>
                             <form action="{{`/tasks/${task.id}?_method=DELETE`}}" method="post">
                             {{ csrfField() }}
+                            
                             <button type="submit" class="delete is-small" id="delete"></button>
-                            </form>
+                            
+                        </form>
                         </td>
                     </tr>
                     @else
